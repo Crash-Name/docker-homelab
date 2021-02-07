@@ -60,7 +60,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.grafana-https.redirectscheme.scheme=https"
       - "traefik.http.routers.grafana-http.entrypoints=web"
-      - "traefik.http.routers.grafana-http.rule=Host(`grafana.example.com`)"  # Domain anpassen
+      - "traefik.http.routers.grafana-http.rule=Host(`${NEXTCLOUD_URL}`)"  # Domain anpassen
       - "traefik.http.routers.grafana-http.middlewares=grafana-https@docker"
       - "traefik.http.routers.grafana.entrypoints=web-secure"
       - "traefik.http.routers.grafana.rule=Host(`grafana.example.com`)"  # Domain anpassen
