@@ -60,10 +60,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.grafana-https.redirectscheme.scheme=https"
       - "traefik.http.routers.grafana-http.entrypoints=web"
-      - "traefik.http.routers.grafana-http.rule=Host(`${ONITORING_URL}`)"  # Domain anpassen
+      - "traefik.http.routers.grafana-http.rule=Host(`${MONITORING_URL}`)"  # Domain anpassen
       - "traefik.http.routers.grafana-http.middlewares=grafana-https@docker"
       - "traefik.http.routers.grafana.entrypoints=web-secure"
-      - "traefik.http.routers.grafana.rule=Host(`${ONITORING_URL}`)"  # Domain anpassen
+      - "traefik.http.routers.grafana.rule=Host(`${MONITORING_URL}`)"  # Domain anpassen
       - "traefik.http.routers.grafana.tls=true"
       - "traefik.http.routers.grafana.tls.certresolver=default"
       - "traefik.http.routers.grafana.middlewares=secHeaders@file"
