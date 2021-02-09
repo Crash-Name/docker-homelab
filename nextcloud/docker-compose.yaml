@@ -39,8 +39,8 @@ services:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - /var/docker/nextcloud/app:/var/www/html
-      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d
-      - /var/docker/nextcloud/usrdata/data:/mnt/data
+      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d #config Dateien nach aussen legen
+      - /var/docker/nextcloud/usrdata/data:/mnt/data #Externes Datenverzeichnis
     links:
       - nextcloud-db
     labels:
