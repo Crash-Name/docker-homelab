@@ -39,8 +39,8 @@ services:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - /var/docker/nextcloud/app:/var/www/html
-      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d #config Dateien nach aussen legen
-      - /var/docker/nextcloud/usrdata/data:/mnt/data #Externes Datenverzeichnis
+      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d #Config Dateien in den Container einbinden
+      - /var/docker/nextcloud/usrdata/data:/mnt/data #Externes Datenverzeichnis (raus aus www)
     links:
       - nextcloud-db
     labels:
@@ -66,25 +66,8 @@ services:
     restart: always
     volumes:
       - /var/docker/nextcloud/app:/var/www/html
-      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d
-      - /var/docker/nextcloud/usrdata/data:/mnt/data
-    entrypoint: /cron.sh
-    depends_on:
-      - nextcloud-db
-      - nextcloud-redis
-
-networks:
-  traefik_proxy:
-    external:
-      name: traefik_proxy
-  default:
-    driver: bridge
-  nextcloud-cron:
-    image: nextcloud
-    restart: always
-    volumes:
-      - /var/docker/nextcloud/app:/var/www/html
-      # - EXTERNES DATENVERZEICHNIS:/var/www/html/data
+      - /var/docker/nextcloud/usrdata/conf.d:/usr/local/etc/php/conf.d #Config Dateien in den Container einbinden
+      - /var/docker/nextcloud/usrdata/data:/mnt/data #Externes Datenverzeichnis (raus aus www)
     entrypoint: /cron.sh
     depends_on:
       - nextcloud-db
